@@ -1,5 +1,5 @@
 {
-  "name": "PhishTor",
+  "name": "Malware_URL",
   "version": "1.0.01",
   "description": "A phishing detector plugin",
   "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],

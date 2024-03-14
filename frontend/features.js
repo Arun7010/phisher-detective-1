@@ -1,312 +1,306 @@
-
 /*
 $('a').click(function(){
     alert("You are about to go to "+$(this).attr('href'));
 });
 */
+async function tr() {
+  var Mal = false;
+  var Cooki = false;
+  var result = {};
+  //---------------------- 1.  IP Address  ----------------------
 
-var Mal = false;
-var Cooki = false;
-var result = {};
-//---------------------- 1.  IP Address  ----------------------
+  var url = window.location.href;
+  // alert(url);
+  var urlDomain = window.location.hostname;
 
-var url = window.location.href;
-// alert(url);
-var urlDomain = window.location.hostname;
+  //url="0x58.0xCC.0xCA.0x62"
 
-//url="0x58.0xCC.0xCA.0x62"
+  var patt = /(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]?[0-9])(\.|$){4}/;
+  var patt2 = /(0x([0-9][0-9]|[A-F][A-F]|[A-F][0-9]|[0-9][A-F]))(\.|$){4}/;
+  var ip = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
 
-var patt = /(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]?[0-9])(\.|$){4}/;
-var patt2 = /(0x([0-9][0-9]|[A-F][A-F]|[A-F][0-9]|[0-9][A-F]))(\.|$){4}/;
-var ip = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+  if (ip.test(urlDomain) || patt.test(urlDomain) || patt2.test(urlDomain)) {
+    result["IP Address"] = "1";
+  } else {
+    result["IP Address"] = "-1";
+  }
 
+  //alert(result);
 
-if(ip.test(urlDomain)||patt.test(urlDomain)||patt2.test(urlDomain)){ 
-    result["IP Address"]="1";
-}else{
-    result["IP Address"]="-1";
-}
+  //---------------------- 2.  URL Length  ----------------------
 
-//alert(result);
+  //alert(url.length);
+  if (url.length < 54) {
+    result["URL Length"] = "-1";
+  } else if (url.length >= 54 && url.length <= 75) {
+    result["URL Length"] = "0";
+  } else {
+    result["URL Length"] = "1";
+  }
+  //alert(result);
 
-//---------------------- 2.  URL Length  ----------------------
+  //---------------------- 3.  Tiny URL  ----------------------
 
+  var onlyDomain = urlDomain.replace("www.", "");
 
-//alert(url.length);
-if(url.length<54){
-    result["URL Length"]="-1";
-}else if(url.length>=54&&url.length<=75){
-    result["URL Length"]="0";
-}else{
-    result["URL Length"]="1";
-}
-//alert(result);
+  if (onlyDomain.length < 7) {
+    result["Tiny URL"] = "1";
+  } else {
+    result["Tiny URL"] = "-1";
+  }
+  //alert(result);
 
+  //---------------------- 4.  @ Symbol  ----------------------
 
-//---------------------- 3.  Tiny URL  ----------------------
+  patt = /@/;
+  if (patt.test(url)) {
+    result["@ Symbol"] = "1";
+  } else {
+    result["@ Symbol"] = "-1";
+  }
 
-var onlyDomain = urlDomain.replace('www.','');
+  //---------------------- 5.  Redirecting using //  ----------------------
 
-if(onlyDomain.length<7){
-    result["Tiny URL"]="1";
-}else{
-    result["Tiny URL"]="-1";
-}
-//alert(result);
+  if (url.lastIndexOf("//") > 7) {
+    result["Redirecting using //"] = "1";
+  } else {
+    result["Redirecting using //"] = "-1";
+  }
 
-//---------------------- 4.  @ Symbol  ----------------------
+  //---------------------- 6. (-) Prefix/Suffix in domain  ----------------------
 
-patt=/@/;
-if(patt.test(url)){ 
-    result["@ Symbol"]="1";
-}else{
-    result["@ Symbol"]="-1";
-}
+  patt = /-/;
+  if (patt.test(urlDomain)) {
+    result["(-) Prefix/Suffix in domain"] = "1";
+  } else {
+    result["(-) Prefix/Suffix in domain"] = "-1";
+  }
 
-//---------------------- 5.  Redirecting using //  ----------------------
+  //---------------------- 7.  No. of Sub Domains  ----------------------
 
-if(url.lastIndexOf("//")>7){
-    result["Redirecting using //"]="1";
-}else{
-    result["Redirecting using //"]="-1";
-}
+  //patt=".";
 
-//---------------------- 6. (-) Prefix/Suffix in domain  ----------------------
+  if ((onlyDomain.match(RegExp("\\.", "g")) || []).length == 1) {
+    result["No. of Sub Domains"] = "-1";
+  } else if ((onlyDomain.match(RegExp("\\.", "g")) || []).length == 2) {
+    result["No. of Sub Domains"] = "0";
+  } else {
+    result["No. of Sub Domains"] = "1";
+  }
 
-patt=/-/;
-if(patt.test(urlDomain)){ 
-    result["(-) Prefix/Suffix in domain"]="1";
-}else{
-    result["(-) Prefix/Suffix in domain"]="-1";
-}
+  //---------------------- 8.  HTTPS  ----------------------
 
-//---------------------- 7.  No. of Sub Domains  ----------------------
+  patt = /https:\/\//;
+  if (patt.test(url)) {
+    result["HTTPS"] = "-1";
+  } else {
+    result["HTTPS"] = "1";
+  }
 
-//patt=".";
+  //---------------------- 9.  Domain Registration Length  ----------------------
 
-if((onlyDomain.match(RegExp('\\.','g'))||[]).length==1){ 
-    result["No. of Sub Domains"]="-1";
-}else if((onlyDomain.match(RegExp('\\.','g'))||[]).length==2){ 
-    result["No. of Sub Domains"]="0";    
-}else{
-    result["No. of Sub Domains"]="1";
-}
+  //---------------------- 10. Favicon  ----------------------
 
-//---------------------- 8.  HTTPS  ----------------------
-
-
-patt=/https:\/\//;
-if(patt.test(url)){
-    result["HTTPS"]="-1";
-}else{
-    result["HTTPS"]="1";
-}
-
-//---------------------- 9.  Domain Registration Length  ----------------------
-
-//---------------------- 10. Favicon  ----------------------
-
-var favicon = undefined;
-var nodeList = document.getElementsByTagName("link");
-for (var i = 0; i < nodeList.length; i++)
-{
-    if((nodeList[i].getAttribute("rel") == "icon")||(nodeList[i].getAttribute("rel") == "shortcut icon"))
-    {
-        favicon = nodeList[i].getAttribute("href");
+  var favicon = undefined;
+  var nodeList = document.getElementsByTagName("link");
+  for (var i = 0; i < nodeList.length; i++) {
+    if (
+      nodeList[i].getAttribute("rel") == "icon" ||
+      nodeList[i].getAttribute("rel") == "shortcut icon"
+    ) {
+      favicon = nodeList[i].getAttribute("href");
     }
-}
-if(!favicon) {
-    result["Favicon"]="-1";
-}else if(favicon.length==12){
-    result["Favicon"]="-1";
-}else{
-    patt=RegExp(urlDomain,'g');
-    if(patt.test(favicon)){
-        result["Favicon"]="-1";
-    }else{
-        result["Favicon"]="1";
+  }
+  if (!favicon) {
+    result["Favicon"] = "-1";
+  } else if (favicon.length == 12) {
+    result["Favicon"] = "-1";
+  } else {
+    patt = RegExp(urlDomain, "g");
+    if (patt.test(favicon)) {
+      result["Favicon"] = "-1";
+    } else {
+      result["Favicon"] = "1";
     }
-}
+  }
 
+  //---------------------- 11. Using Non-Standard Port  ----------------------
 
-//---------------------- 11. Using Non-Standard Port  ----------------------
+  result["Port"] = "-1";
 
-result["Port"]="-1";
+  //---------------------- 12.  HTTPS in URL's domain part  ----------------------
 
-//---------------------- 12.  HTTPS in URL's domain part  ----------------------
+  patt = /https/;
+  if (patt.test(onlyDomain)) {
+    result["HTTPS in URL's domain part"] = "1";
+  } else {
+    result["HTTPS in URL's domain part"] = "-1";
+  }
 
+  // alert(result);
 
-patt=/https/;
-if(patt.test(onlyDomain)){
-    result["HTTPS in URL's domain part"]="1";
-}else{
-    result["HTTPS in URL's domain part"]="-1";
-}
+  //---------------------- 13.  Request URL  ----------------------
 
-// alert(result);
+  var imgTags = document.getElementsByTagName("img");
 
-//---------------------- 13.  Request URL  ----------------------
+  var phishCount = 0;
+  var legitCount = 0;
 
-var imgTags = document.getElementsByTagName("img");
+  patt = RegExp(onlyDomain, "g");
 
-var phishCount=0;
-var legitCount=0;
-
-patt=RegExp(onlyDomain,'g');
-
-for(var i = 0; i < imgTags.length; i++){
+  for (var i = 0; i < imgTags.length; i++) {
     var src = imgTags[i].getAttribute("src");
-    if(!src) continue;
-    if(patt.test(src)){
-        legitCount++;
-    }else if(src.charAt(0)=='/'&&src.charAt(1)!='/'){
-        legitCount++;
-    }else{
-        phishCount++;
+    if (!src) continue;
+    if (patt.test(src)) {
+      legitCount++;
+    } else if (src.charAt(0) == "/" && src.charAt(1) != "/") {
+      legitCount++;
+    } else {
+      phishCount++;
     }
-}
-var totalCount=phishCount+legitCount;
-var outRequest=(phishCount/totalCount)*100;
-//alert(outRequest);
+  }
+  var totalCount = phishCount + legitCount;
+  var outRequest = (phishCount / totalCount) * 100;
+  //alert(outRequest);
 
-if(outRequest<22){
-    result["Request URL"]="-1";
-}else if(outRequest>=22&&outRequest<61){
-    result["Request URL"]="0";
-}else{
-    result["Request URL"]="1";
-}
+  if (outRequest < 22) {
+    result["Request URL"] = "-1";
+  } else if (outRequest >= 22 && outRequest < 61) {
+    result["Request URL"] = "0";
+  } else {
+    result["Request URL"] = "1";
+  }
 
-//---------------------- 14.  URL of Anchor  ----------------------
-var aTags = document.getElementsByTagName("a");
+  //---------------------- 14.  URL of Anchor  ----------------------
+  var aTags = document.getElementsByTagName("a");
 
-phishCount=0;
-legitCount=0;
-var allhrefs="";
+  phishCount = 0;
+  legitCount = 0;
+  var allhrefs = "";
 
-for(var i = 0; i < aTags.length; i++){
+  for (var i = 0; i < aTags.length; i++) {
     var hrefs = aTags[i].getAttribute("href");
-    if(!hrefs) continue;
-    allhrefs+=hrefs+"       ";
-    if(patt.test(hrefs)){
-        legitCount++;
-    }else if(hrefs.charAt(0)=='#'||(hrefs.charAt(0)=='/'&&hrefs.charAt(1)!='/')){
-        legitCount++;
-    }else{
-        phishCount++;
+    if (!hrefs) continue;
+    allhrefs += hrefs + "       ";
+    if (patt.test(hrefs)) {
+      legitCount++;
+    } else if (
+      hrefs.charAt(0) == "#" ||
+      (hrefs.charAt(0) == "/" && hrefs.charAt(1) != "/")
+    ) {
+      legitCount++;
+    } else {
+      phishCount++;
     }
-}
-totalCount=phishCount+legitCount;
-outRequest=(phishCount/totalCount)*100;
+  }
+  totalCount = phishCount + legitCount;
+  outRequest = (phishCount / totalCount) * 100;
 
-if(outRequest<31){
-    result["Anchor"]="-1";
-}else if(outRequest>=31&&outRequest<=67){
-    result["Anchor"]="0";
-}else{
-    result["Anchor"]="1";
-}
+  if (outRequest < 31) {
+    result["Anchor"] = "-1";
+  } else if (outRequest >= 31 && outRequest <= 67) {
+    result["Anchor"] = "0";
+  } else {
+    result["Anchor"] = "1";
+  }
 
-//alert(allhrefs);
+  //alert(allhrefs);
 
-//---------------------- 15. Links in script and link  ----------------------
+  //---------------------- 15. Links in script and link  ----------------------
 
-var mTags = document.getElementsByTagName("meta");
-var sTags = document.getElementsByTagName("script");
-var lTags = document.getElementsByTagName("link");
+  var mTags = document.getElementsByTagName("meta");
+  var sTags = document.getElementsByTagName("script");
+  var lTags = document.getElementsByTagName("link");
 
-phishCount=0;
-legitCount=0;
+  phishCount = 0;
+  legitCount = 0;
 
-allhrefs="sTags  ";
+  allhrefs = "sTags  ";
 
-for(var i = 0; i < sTags.length; i++){
+  for (var i = 0; i < sTags.length; i++) {
     var sTag = sTags[i].getAttribute("src");
-    if(sTag!=null){
-        allhrefs+=sTag+"      ";
-        if(patt.test(sTag)){
-            legitCount++;
-        }else if(sTag.charAt(0)=='/'&&sTag.charAt(1)!='/'){
-            legitCount++;
-        }else{
-            phishCount++;
-        }
-    }
-}
-
-allhrefs+="      lTags   ";
-for(var i = 0; i < lTags.length; i++){
-    var lTag = lTags[i].getAttribute("href");
-    if(!lTag) continue;
-    allhrefs+=lTag+"       ";
-    if(patt.test(lTag)){
+    if (sTag != null) {
+      allhrefs += sTag + "      ";
+      if (patt.test(sTag)) {
         legitCount++;
-    }else if(lTag.charAt(0)=='/'&&lTag.charAt(1)!='/'){
+      } else if (sTag.charAt(0) == "/" && sTag.charAt(1) != "/") {
         legitCount++;
-    }else{
+      } else {
         phishCount++;
+      }
     }
-}
+  }
 
-totalCount=phishCount+legitCount;
-outRequest=(phishCount/totalCount)*100;
+  allhrefs += "      lTags   ";
+  for (var i = 0; i < lTags.length; i++) {
+    var lTag = lTags[i].getAttribute("href");
+    if (!lTag) continue;
+    allhrefs += lTag + "       ";
+    if (patt.test(lTag)) {
+      legitCount++;
+    } else if (lTag.charAt(0) == "/" && lTag.charAt(1) != "/") {
+      legitCount++;
+    } else {
+      phishCount++;
+    }
+  }
 
-if(outRequest<17){
-    result["Script & Link"]="-1";
-}else if(outRequest>=17&&outRequest<=81){
-    result["Script & Link"]="0";
-}else{
-    result["Script & Link"]="1";
-}
+  totalCount = phishCount + legitCount;
+  outRequest = (phishCount / totalCount) * 100;
 
-//alert(allhrefs);
+  if (outRequest < 17) {
+    result["Script & Link"] = "-1";
+  } else if (outRequest >= 17 && outRequest <= 81) {
+    result["Script & Link"] = "0";
+  } else {
+    result["Script & Link"] = "1";
+  }
 
-//---------------------- 16.Server Form Handler ----------------------
+  //alert(allhrefs);
 
-var forms = document.getElementsByTagName("form");
-var res = "-1";
+  //---------------------- 16.Server Form Handler ----------------------
 
-for(var i = 0; i < forms.length; i++) {
+  var forms = document.getElementsByTagName("form");
+  var res = "-1";
+
+  for (var i = 0; i < forms.length; i++) {
     var action = forms[i].getAttribute("action");
-    if(!action || action == "") {
-        res = "1";
-        break;
-    } else if(!(action.charAt(0)=="/" || patt.test(action))) {
-        res = "0";
+    if (!action || action == "") {
+      res = "1";
+      break;
+    } else if (!(action.charAt(0) == "/" || patt.test(action))) {
+      res = "0";
     }
-}
-result["SFH"] = res;
+  }
+  result["SFH"] = res;
 
-//---------------------- 17.Submitting to mail ----------------------
+  //---------------------- 17.Submitting to mail ----------------------
 
-var forms = document.getElementsByTagName("form");
-var res = "-1";
+  var forms = document.getElementsByTagName("form");
+  var res = "-1";
 
-for(var i = 0; i < forms.length; i++) {
+  for (var i = 0; i < forms.length; i++) {
     var action = forms[i].getAttribute("action");
-    if(!action) continue;
-    if(action.startsWith("mailto")) {
-        res = "1";
-        break;
+    if (!action) continue;
+    if (action.startsWith("mailto")) {
+      res = "1";
+      break;
     }
-}
-result["mailto"] = res;
+  }
+  result["mailto"] = res;
 
-//---------------------- 23.Using iFrame ----------------------
+  //---------------------- 23.Using iFrame ----------------------
 
-var iframes = document.getElementsByTagName("iframe");
+  var iframes = document.getElementsByTagName("iframe");
 
-if(iframes.length == 0) {
+  if (iframes.length == 0) {
     result["iFrames"] = "-1";
-} else {
+  } else {
     result["iFrames"] = "1";
-}
-//=====================================================================
+  }
+  //=====================================================================
 
-
-
-
-async function query(data) {
+  async function query(data) {
     try {
       const response = await fetch(
         "https://api-inference.huggingface.co/models/elftsdmr/malware-url-detect",
@@ -322,93 +316,71 @@ async function query(data) {
       const result = await response.json();
       return result;
     } catch (error) {
-        console.error("Error querying the model:", error);
-        //window.alert(error);
+      console.error("Error querying the model:", error);
+      //window.alert(error);
       return { error: "Error querying the model" };
     }
   }
-  
+
   // Function to check if the URL is potentially malicious
   async function checkMalicious() {
     let currentURL = window.location.href;
-  
+    // window.alert(currentURL)
     try {
-      const response = await query({ inputs: currentURL });
-  
-      isMalicious = false;
+      const response = await query(urlDomain);
       if (response[0][0].label === "MALWARE") {
-        isMalicious = true;
-        Mal = true;
-        // Inform the user or take action for malicious URL
-        window.alert("AO6 alert-malicious");
-        // You might block the navigation or redirect the user
-        // window.location.href = "safe-page.html";
+        return true;
+      } else {
+        return false;
       }
-  
-      hasThirdPartyCookies = false;
-      if (
-        document.cookie
-          .split(";")
-          .some(
-            (cookie) =>
-              cookie.trim().startsWith("_") ||
-              cookie.trim().startsWith("third-party-cookie")
-          )
-      ) {
-        hasThirdPartyCookies = true;
-        Cooki = true;
-        window.alert(
-          "A06 alert-cookies"
-        );
-      }
-  
-      // Store the detection results in local storage
-      localStorage.setItem(
-        "urlDetectionResult",
-        JSON.stringify({
-          url: currentURL,
-          isMalicious: isMalicious,
-          hasThirdPartyCookies: hasThirdPartyCookies,
-        })
-        );
-        window.alert(localStorage.getItem("urlDetectionResult"))
     } catch (error) {
       console.log("Error checking URL:", error);
     }
   }
-  
-  // Listen for changes in the browser's URL bar
-  window.addEventListener("hashchange", checkMalicious);
-  window.addEventListener("popstate", checkMalicious);
-  window.addEventListener("load", checkMalicious);
-  
-//---------------------- 24.Malisious ----------------------
 
-// Malicious condition
-if (Mal) {
-    result["Malicious"] = "-1";
- } else {
+  const dd = await checkMalicious();
+  //window.alert("froim", dd);
+
+  if (dd) {
     result["Malicious"] = "1";
-}
+  } else {
+    result["Malicious"] = "-1";
+  }
 
-// Cookies condition
-if (Cooki) {
-    result["Cookies"] = "-1";
-} else {
-    result["Cookies"] = "1";
-}
+  //---------------------- 24.Malisious ----------------------
 
-//==========================================================================
+  // Malicious condition
 
-//---------------------- Sending the result  ----------------------
-chrome.runtime.sendMessage(result, function(response) {
-    console.log(result);
+  // Cookies condition
+
+  //==========================================================================
+
+  //---------------------- Sending the result  ----------------------
+  chrome.runtime.sendMessage(result, function (response) {
+    //console.log(result);
     //console.log(response);
-});
+  });
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  var alert = `<html>
+  <body>hi></body></html>`;
+  chrome.runtime.onMessage.addListener(function (
+    request,
+    sender,
+    sendResponse
+  ) {
     if (request.action == "alert_user") {
-        alert("Warning!!! This seems to be a phishing website.");
+      // var result = window.confirm("Are you sure you want to proceed?");
+      // if (result) {
+      //   //
+      // } else {
+      //   //var tabId = request.id;
+      //   chrome.runtime.sendMessage("close");
+      //   window.close;
+      // }
+      
     }
     return Promise.resolve("Dummy response to keep the console quiet");
-});
+  });
+}
+
+tr();

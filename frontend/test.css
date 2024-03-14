@@ -1,0 +1,22 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(95, 121, 121);
+    
+}
+
+#data{
+  display: flex;
+  flex-direction: column;
+}
+
+.gird{
+    display: flex;
+    flex-direction: row;
+}
+
+.circle{
+    width: 20px;
+    height: 30px;
+    border-radius: 100%;
+}

@@ -15,7 +15,7 @@
   "content_scripts":[
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["features.js"]
+      "js": ["features.js","custom_alert.js","test.js","features.js"]
     }
   ],
   "manifest_version": 3

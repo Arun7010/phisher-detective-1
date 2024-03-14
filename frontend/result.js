@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   if (nonce) {
     applyNonce(nonce);
-
-    // Retrieve URL detection results from local storage
       const storedResult = localStorage.getItem("urlDetectionResult");
       console.log(storedResult);
     if (storedResult) {

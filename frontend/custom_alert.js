@@ -1,12 +1,15 @@
 console.log("Custom alert script is running");
 var url = "";
-chrome.storage.local.set({ isClicked: false });
+
+var tabid = "";
+
 //console.log(chrome.storage.local.get('isClicked'));
 chrome.runtime.onMessage.addListener(async (req, send, rec) => {
   console.log(req);
-  const isClicked = await chrome.storage.local.get("isClicked").isClicked;
-  console.log(isClicked=== false);
-  if (req.action === "alert_user" && (!isClicked || isClicked.length === 0)) {
+  tabid = req.id;
+  const proceed = await chrome.storage.local.get("isProceed");
+  console.log(proceed.isProceed[tabid]);
+  if (req.action === "alert_user" && proceed.isProceed[tabid] === false) {
     chrome.runtime.sendMessage({ url: window.location.href });
     return true;
   }
@@ -34,11 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
   modal.style.display = "block";
 
   // When the user clicks on the "Proceed" button, close the modal
-  proceedBtn.onclick = function () {
+  proceedBtn.onclick = async function () {
     isClicked = true;
-    chrome.storage.local.set({ isClicked: true });
-    chrome.runtime.sendMessage({ message: "proceed" });
-    
+    var pro = await chrome.storage.local.get("isProceed");
+    pro.isProceed[tabid] = true;
+    await chrome.storage.local.set(pro);
+    window.location.href = "https://www.google.com";
+    chrome.runtime.sendMessage("proceed");
   };
 
   // When the user clicks on the "Back to Google" button, redirect to google.com
@@ -55,12 +60,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Listen for messages from other parts of the extension
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.msg === "alert") {
-    // Show the custom alert
-    console.log("Received message to show alert");
-    var modal = document.getElementById("customAlert");
-    modal.style.display = "block";
-    return true;
-  }
-});

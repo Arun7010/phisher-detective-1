@@ -361,8 +361,7 @@ async function tr() {
     //console.log(response);
   });
 
-  var alert = `<html>
-  <body>hi></body></html>`;
+  
   chrome.runtime.onMessage.addListener(function (
     request,
     sender,

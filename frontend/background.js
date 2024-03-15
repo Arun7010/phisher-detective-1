@@ -1,6 +1,7 @@
 var results = {};
 var legitimatePercents = {};
 var isPhish = {};
+var isProceed = {};
 
 function fetchLive(callback) {
   fetch(
@@ -68,11 +69,13 @@ async function classify(tabId, result) {
       } else {
         isPhish[tabId] = false;
       }
-      //isPhish[tabId] = true;
+
+      isProceed[tabId] = false;
       chrome.storage.local.set({
         results: results,
         legitimatePercents: legitimatePercents,
         isPhish: isPhish,
+        isProceed: isProceed,
       });
 
       if (isPhish[tabId]) {
@@ -95,7 +98,7 @@ async function classify(tabId, result) {
         //     // Window creation callback
         //   }
         // );
-
+        
         chrome.tabs.query(
           { active: true, currentWindow: true },
           function (tabs) {
@@ -112,6 +115,11 @@ async function classify(tabId, result) {
 }
 var url_ = "";
 
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === "alert_user") {
+    chrome.tabs.sendMessage(sender.tab.id, { action: "show_alert" });
+  }
+});
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.url) {
@@ -121,10 +129,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message=== "proceed") {
-    isclicked = true;
-    chrome.tabs.update({ url: url_ });
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === "proceed") {
+    // Proceed with the original URL
+    chrome.tabs.sendMessage(sender.tab.id, { action: "proceed" });
   }
 });
 

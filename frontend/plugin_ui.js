@@ -6,7 +6,13 @@ var colors = {
 
 var featureList = document.getElementById("features");
 
+// document.addEventListener("DOMElement", () => {
+//   const staticbtn = document.getElementById("staticbtn");
 
+//   staticbtn.addEventListener("click", () => {
+    
+//   })
+// })
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   console.log(message);
@@ -42,13 +48,13 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
         progressBarWidth + "%";
 
       if (progressBarWidth < 55) {
-        document.getElementById("site_progress").style.background = "#14db49";
+        document.getElementById("site_progress").style.background = "#d42004";
       }
       if (progressBarWidth >= 55 && progressBarWidth < 80) {
         document.getElementById("site_progress").style.background = "#f7e40a";
       }
-      if (progressBarWidth >= 80 && progressBarWidth <= 100) {
-        document.getElementById("site_progress").style.background = "#d42004";
+      if (progressBarWidth >= 80 && progressBarWidth <= 100) {    
+        document.getElementById("site_progress").style.background = "#14db49";
       }
 
       // Display warning message for phishing sites
@@ -60,13 +66,7 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
           parseInt(legitimatePercent) -20 + "%";
       }
 
-      // Display features/results
-      for (var key in result) {
-        var newFeature = document.createElement("li");
-        newFeature.textContent = key;
-        newFeature.style.backgroundColor = colors[result[key]];
-        featureList.appendChild(newFeature);
-      }
+     
     }
   );
 });

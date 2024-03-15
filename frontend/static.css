@@ -29,3 +29,50 @@
     font-weight: bolder;
     text-align: left;
 }
+
+
+.checkUrl{
+    height: 500px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.url{
+    background-color: white;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    margin-left: 3px;
+    color: black;
+    margin-right: 3px;
+    width: 350px;
+    height: 50px;
+    font-weight: bolder;
+}
+
+.checkbtn {
+    font-size: large;
+    width: 100px;
+    margin-top: -70px;
+    background-color: white; /* Set default background color */
+    border: none;
+    outline: none;
+    margin: 2%;
+    padding: 4%;
+    text-align: center;
+    border-radius: 300px;
+    border: 1px ;
+    box-sizing: border-box;
+    color: black;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
+}
+
+.checkbtn:hover {
+    background-color: black; /* Set hover background color */
+    color: white;
+    transform: translateY(-15px); /* Move the button up on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle box-shadow for 3D effect */
+}
+

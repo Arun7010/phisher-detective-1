@@ -69,7 +69,7 @@ async function classify(tabId, result) {
       } else {
         isPhish[tabId] = false;
       }
-
+      // isPhish[tabId] = true;
       isProceed[tabId] = false;
       chrome.storage.local.set({
         results: results,
@@ -98,7 +98,7 @@ async function classify(tabId, result) {
         //     // Window creation callback
         //   }
         // );
-        
+
         chrome.tabs.query(
           { active: true, currentWindow: true },
           function (tabs) {
@@ -115,12 +115,6 @@ async function classify(tabId, result) {
 }
 var url_ = "";
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.action === "alert_user") {
-    chrome.tabs.sendMessage(sender.tab.id, { action: "show_alert" });
-  }
-});
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.url) {
     console.log(request.url);
@@ -129,10 +123,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.action === "proceed") {
-    // Proceed with the original URL
-    chrome.tabs.sendMessage(sender.tab.id, { action: "proceed" });
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "proceed") {
+    console.log(tabId);
+    console.log("111111111111111111111111");
+    window.location.href = url_;
   }
 });
 

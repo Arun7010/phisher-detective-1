@@ -1,8 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const showResultsButton = document.getElementById("showResults");
-  showResultsButton.addEventListener("click", handleShowResults);
-});
-
 function handleShowResults() {
   const nonce = generateNonce();
   openResultsPage(nonce);

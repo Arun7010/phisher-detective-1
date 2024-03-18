@@ -1,5 +1,3 @@
-/* static.css */
-
 * {
     box-sizing: border-box;
 }
@@ -9,8 +7,7 @@ html,body {
     height: 500px;
     background-color: #1d2136;
     color: white;
-}
-
+  }
 .sidebar {
     width: 250px;
     height: 100vh;
@@ -65,7 +62,10 @@ html,body {
     overflow-y: auto; /* Add this line */
 }
 
-h1, h2 {
+
+
+h1,
+h2 {
     color: white;
     text-align: center;
     font-family: 'Russo One', sans-serif;
@@ -113,50 +113,57 @@ h1, h2 {
     font-weight: bolder;
 }
 
-/* static.css */
-
 .checkbtn {
     font-size: large;
-    width: 120px; /* Adjust button width */
-    margin-top: 20px; /* Adjust button margin */
-    background-color: #195975;
+    width: 100px;
+    margin-top: -70px;
+    background-color: white;
     border: none;
-<<<<<<< Updated upstream
     outline: none;
     margin: 2%;
     padding: 4%;
     text-align: center;
     border-radius: 300px;
-    border: 1px ;
+    border: 1px;
     box-sizing: border-box;
     color: black;
-    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
-=======
-    border-radius: 30px; /* Rounded button corners */
-    color: white;
-    padding: 10px 20px; /* Padding around button text */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
->>>>>>> Stashed changes
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    background-color: #dbebf1;
+    border-radius: 30px;
+    align-items: center;
+    padding: 10px;
+    color: #1d2136;
+    font-weight: bolder;
+    font-size: large;
+    overflow-wrap: break-word;
+
+}
+.container{
+    color: rgb(235, 235, 235);
+    margin: 10%;
+    box-sizing:border-box;
+    border-radius: 30px;
 }
 
+.block{
+    background-color: #636fae00;
+    height: fit-content;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: -30px;
+}
 .checkbtn:hover {
-    background-color: #123456; /* Darker background color on hover */
-    transform: translateY(-2px); /* Shift button slightly upwards */
+    background-color: black;
+    color: white;
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
-<<<<<<< Updated upstream
-=======
-.checkbtn:focus {
-    outline: none; /* Remove focus outline */
-}
-
-.checkbtn:active {
-    transform: scale(0.95); /* Shrink button slightly on click */
-}
-
 
 .result {
     font-size: xx-large
 }
->>>>>>> Stashed changes

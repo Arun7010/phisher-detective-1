@@ -1,25 +1,146 @@
-body{
-    width:500px;
-    background-color:  #1d2136;
+html,body {
+    width: 800px;
+    height: 500px;
+    background-color: #1d2136;
     color: white;
+}
+
+.sidebar {
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    background-color: #1d2136;
+    position: fixed;
+}
+
+.sidebar_menu {
+    padding-top: 20px;
+}
+
+.sidebar_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.sidebar_menu li {
+    margin-bottom: 10px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #195975;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #123456;
+}
+
+.content {
+    margin-left: 250px; /* Match sidebar width */
+    padding: 20px;
+    background-color: #273446;
+    height: 100%;
+    width: calc(100% - 250px); /* Adjust content width */
+}
+
+#plugin_name {
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    color: white;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+
+.progress {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 25px;
+}
+
+#site_score {
+    font-size: 50px;
+    text-align: center;
+}
+
+#site_msg {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    margin: 2px;
+}
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+.sidebar {
+    height: 100vh; /* Full height */
+    width: 200px; /* Set the width of the sidebar */
+    background-color: #111; /* Dark background color */
+    padding-top: 20px;
+    color: white;
+}
+
+.sidebar_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.test {
+    flex-grow: 1; /* Take remaining space */
+    padding: 20px; /* Added padding for spacing */
+}
+
+#plugin_name {
+    text-align: center;
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+#data {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content:center ;
+    margin-top: 20px; /* Added margin for spacing */
 }
 
-#data{
-  display: flex;
-  flex-direction: column;
-}
-
-.gird{
+.grid {
     display: flex;
     flex-direction: row;
+    align-items: center; /* Align items vertically in the grid */
+    margin-bottom: 10px; /* Added margin for spacing */
 }
 
-.circle{
+.circle {
     width: 20px;
-    height: 30px;
-    border-radius: 100%;
+    height: 20px; /* Adjusted height for better appearance */
+    border-radius: 50%; /* Changed border-radius value to make a circle */
+    background-color: red; /* Added background color for visibility */
+    margin-right: 10px; /* Added margin for spacing */
 }

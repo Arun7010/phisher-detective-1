@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Malware Detection</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Russo+One" rel="stylesheet">
+  <link href="plugin_ui.css" type="text/css" rel="stylesheet">
+  <style>
+    /* CSS for the layout */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      height: 100%;
+    }
+    .sidebar {
+      width: 200px;
+      background-color: #f0f0f0;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar_menu">
+        <ul>
+          <li><a href="static.html" class="button">Static</a></li>
+          <li><a href="test.html" class="button">Score</a></li>
+          <li><a href="checkUrl.html" class="button">Check URL</a></li>
+          <li><a href="whois.html" class="button">Domain</a></li>
+          <li><a href="extrabutton.html" class="button">Extra</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <iframe src="plugin_ui.html"></iframe>
+      <iframe src="result.html"></iframe>
+      <iframe src="extrabutton.html"></iframe>
+      <iframe src="static.html"></iframe>
+      <iframe src="test.html"></iframe>
+    </div>
+  </div>
+</body>
+</html>

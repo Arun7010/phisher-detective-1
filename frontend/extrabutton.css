@@ -121,23 +121,11 @@ h1, h2 {
     margin-top: 20px; /* Adjust button margin */
     background-color: #195975;
     border: none;
-<<<<<<< Updated upstream
-    outline: none;
-    margin: 2%;
-    padding: 4%;
-    text-align: center;
-    border-radius: 300px;
-    border: 1px ;
-    box-sizing: border-box;
-    color: black;
-    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
-=======
     border-radius: 30px; /* Rounded button corners */
     color: white;
     padding: 10px 20px; /* Padding around button text */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
->>>>>>> Stashed changes
 }
 
 .checkbtn:hover {
@@ -145,8 +133,6 @@ h1, h2 {
     transform: translateY(-2px); /* Shift button slightly upwards */
 }
 
-<<<<<<< Updated upstream
-=======
 .checkbtn:focus {
     outline: none; /* Remove focus outline */
 }
@@ -159,4 +145,3 @@ h1, h2 {
 .result {
     font-size: xx-large
 }
->>>>>>> Stashed changes

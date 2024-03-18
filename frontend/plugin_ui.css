@@ -1,135 +1,96 @@
-html {
-    height: 350px;
-}
-body {
+html,body {
+    width: 800px;
+    height: 500px;
+    background-color: #1d2136;
+    color: white;
+  }
+  
+  .sidebar {
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    background-color: #1d2136;
+    position: fixed;
+  }
+  
+  .sidebar_menu {
+    padding-top: 20px;
+  }
+  
+  .sidebar_menu ul {
+    list-style: none;
     padding: 0;
     margin: 0;
-    width: 700px;
-    background: #1d2136;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-     border-radius: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-
-}
-#plugin_name {
-    position: absolute;
-    top:10px;
-    left: 200px;
-    width: 330px;
-    margin: 0 0;
-    background-color:transparent;
-    align-items: center;
-    text-align: center;
-   
-}
-h2 {
-    margin-top: 20px;
-    margin-bottom: 15px;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
-    font-size: 15px;
-}
-h1 {
-    font-family: 'Russo One', sans-serif;
-    color: white;
-    font-size: 25px;
-    padding: 10px;
-    text-align: center;
-}
-
-#site_score{
-    font-family: 'Josefin Sans', sans-serif;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    position: relative;
-    top: 0px;
-    margin-left: 3px;
-    text-align: center;
-    font-size: 50px;
-}
-#site_msg{
-    margin-top: 20px;
-    margin-bottom: 5px;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
-    font-size: 15px;
-}
-
-ul {
-    list-style: none;
-}
-
-li {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    margin: 2px;
-    display: inline-block;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 3px;
-    color: #fff;
-}
-
-iframe {
-    margin: 10px;
-    display: inline-block;
-}
-
-a {
-    text-align: center;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+  }
+  
+  .sidebar_menu li {
+    margin-bottom: 10px;
+  }
+  
+  .button {
     display: block;
-    color: #195975
-}
-
-.progress{
-    width: 600px;
-    margin-left: 8%;
-    margin-top: -20%;
-    height: 25px;
-}
-
-.progress-bar{
-    height: 100%;
-}
-
-
-.buttondiv {
-    height: 50px;
-    width: 700px;
-    margin-left: 25%;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-}
-
-.button {
-    height: 100%;
-    font-size: large;
-    background-color: white; /* Set default background color */
+    width: 100%;
+    padding: 10px;
     border: none;
-    outline: none;
-    margin: 2%;
-    padding: 4%;
-    text-align: center;
-    border-radius: 300px;
-    border: 1px ;
-    box-sizing: border-box;
-    color: black;
-    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
-}
-
-.button:hover {
-    background-color: black; /* Set hover background color */
+    border-radius: 20px;
+    background-color: #195975;
     color: white;
-    transform: translateY(-15px); /* Move the button up on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle box-shadow for 3D effect */
-}
-
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #123456;
+  }
+  
+  .content {
+    margin-left: 250px; /* Match sidebar width */
+    padding: 20px;
+    background-color: #273446;
+    height: 100%;
+    width: calc(100% - 250px); /* Adjust content width */
+  }
+  
+  #plugin_name {
+    margin-bottom: 20px;
+  }
+  
+  h1, h2 {
+    color: white;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+  }
+  
+  .progress {
+    margin-bottom: 20px;
+  }
+  
+  .progress-bar {
+    height: 25px;
+  }
+  
+  #site_score {
+    font-size: 50px;
+    text-align: center;
+  }
+  
+  #site_msg {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    margin: 2px;
+  }
+  

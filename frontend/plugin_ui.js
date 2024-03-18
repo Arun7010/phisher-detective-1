@@ -48,13 +48,13 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
         progressBarWidth + "%";
 
       if (progressBarWidth < 55) {
-        document.getElementById("site_progress").style.background = "#d42004";
+        document.getElementById("site_progress").style.background = "#14db49";
       }
       if (progressBarWidth >= 55 && progressBarWidth < 80) {
         document.getElementById("site_progress").style.background = "#f7e40a";
       }
       if (progressBarWidth >= 80 && progressBarWidth <= 100) {    
-        document.getElementById("site_progress").style.background = "#14db49";
+        document.getElementById("site_progress").style.background = "#d42004";
       }
 
       // Display warning message for phishing sites

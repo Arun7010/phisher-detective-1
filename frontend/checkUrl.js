@@ -20,7 +20,6 @@ async function query(data) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("hh");
   const input = document.getElementById("urlinput");
   var btn = document.getElementById("Submit");
   btn.addEventListener("click", async () => {

@@ -1,8 +1,15 @@
 {
   "name": "Malware_URL",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "A phishing detector plugin",
-  "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "webNavigation",
+    "webRequest"
+  ],
+  "host_permissions": ["http://*/*", "https://*/*"],
   "icons": {
     "48": "virus1.png"
   },
@@ -15,7 +22,7 @@
   "content_scripts":[
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["features.js","custom_alert.js","test.js","features.js","checkUrl.js"]
+      "js": ["features.js","custom_alert.js","test.js","features.js","checkUrl.js","whois.js"]
     }
   ],
   "manifest_version": 3

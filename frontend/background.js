@@ -69,7 +69,7 @@ async function classify(tabId, result) {
       } else {
         isPhish[tabId] = false;
       }
-      // isPhish[tabId] = true;
+      isPhish[tabId] = false;
       isProceed[tabId] = false;
       chrome.storage.local.set({
         results: results,
@@ -115,6 +115,12 @@ async function classify(tabId, result) {
 }
 var url_ = "";
 
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === "alert_user") {
+    chrome.tabs.sendMessage(sender.tab.id, { action: "show_alert" });
+  }
+});
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.url) {
     console.log(request.url);
@@ -123,11 +129,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message === "proceed") {
-    console.log(tabId);
-    console.log("111111111111111111111111");
-    window.location.href = url_;
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === "proceed") {
+    // Proceed with the original URL
+    chrome.tabs.sendMessage(sender.tab.id, { action: "proceed" });
   }
 });
 
@@ -136,3 +141,18 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   classify(sender.tab.id, request);
   sendResponse({ received: "result" });
 });
+// Intercept incoming responses
+chrome.webRequest.onHeadersReceived.addListener(
+  function (details) {
+    const responseHeaders = details.responseHeaders;
+    const setCookieHeaders = responseHeaders.filter(
+      (header) => header.name.toLowerCase() === "set-cookie"
+    );
+    if (setCookieHeaders.length > 0) {
+      console.log("Incoming response with cookies:", details.url);
+      console.log("Response headers:", responseHeaders);
+    }
+  },
+  { urls: ["<all_urls>"] },
+  ["responseHeaders"]
+);

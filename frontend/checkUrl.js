@@ -33,8 +33,5 @@ async function checkURL(url) {
   const domain = parsedUrl.hostname;
   console.log("Domain:", domain);
   const result = await query(domain);
-  document.getElementById(
-    "result"
-    ).innerHTML = result[0][0]["label"];
-  
+  document.getElementById("result").innerHTML = result[0][0]["label"];
 }

@@ -13,7 +13,9 @@ async function query(data) {
   return result;
 }
 
-query({ inputs: "" }).then((response) => {
+query({
+  inputs: "zonasegurad2bn.000webhostapp.com",
+}).then((response) => {
   //console.log(response.label);
   console.log(JSON.stringify(response));
 });

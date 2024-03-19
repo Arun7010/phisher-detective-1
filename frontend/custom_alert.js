@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(async (req, send, rec) => {
   const proceed = await chrome.storage.local.get("isProceed");
   console.log(proceed.isProceed[tabid]);
   if (req.action === "alert_user" && proceed.isProceed[tabid] === false) {
-    chrome.runtime.sendMessage({ url: window.location.href });
+    chrome.runtime.sendMessage({ url: window.location.href ,action:"show"});
     return true;
   }
   // alert(window.location.href);

@@ -338,15 +338,24 @@ async function tr() {
     }
   }
 
-  const dd = await checkMalicious();
+  const maliciousdata = await checkMalicious();
   //window.alert("froim", dd);
 
-  if (dd) {
+  if (maliciousdata) {
     result["Malicious"] = "1";
   } else {
     result["Malicious"] = "-1";
   }
 
+  chrome.runtime.sendMessage(
+    {
+      message: "fetchWhoisData",
+      url: window.location.href,
+    },
+    async (data) => {
+      chrome.storage.local.get("whois", async (data) => {});
+    }
+  );
   //---------------------- 24.Malisious ----------------------
 
   // Malicious condition
@@ -356,12 +365,14 @@ async function tr() {
   //==========================================================================
 
   //---------------------- Sending the result  ----------------------
-  chrome.runtime.sendMessage(result, function (response) {
-    //console.log(result);
-    //console.log(response);
-  });
+  chrome.runtime.sendMessage(
+    { message: "result", result: result },
+    function (response) {
+      //console.log(result);
+      //console.log(response);
+    }
+  );
 
-  
   chrome.runtime.onMessage.addListener(function (
     request,
     sender,
@@ -376,7 +387,6 @@ async function tr() {
       //   chrome.runtime.sendMessage("close");
       //   window.close;
       // }
-      
     }
     return Promise.resolve("Dummy response to keep the console quiet");
   });

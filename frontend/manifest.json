@@ -22,7 +22,7 @@
   "content_scripts":[
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["features.js","custom_alert.js","test.js","features.js","checkUrl.js","whois.js"]
+      "js": ["features.js","custom_alert.js","test.js","checkUrl.js"]
     }
   ],
   "manifest_version": 3

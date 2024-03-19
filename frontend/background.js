@@ -114,7 +114,7 @@ async function classify(tabId, result) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.url && request.action === "show") {
-    chrome.tabs.update({ url: "alert.html" });
+    //chrome.tabs.update({ url: "alert.html" });
   }
 });
 

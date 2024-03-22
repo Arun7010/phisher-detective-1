@@ -10,22 +10,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-     border-radius: 20px;
-  margin-top: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+
 #plugin_name {
     position: absolute;
-    top:10px;
+    top: 10px;
     left: 200px;
     width: 330px;
     margin: 0 0;
-    background-color:transparent;
+    background-color: transparent;
     align-items: center;
     text-align: center;
-   
 }
+
 h2 {
     margin-top: 20px;
     margin-bottom: 15px;
@@ -41,7 +41,7 @@ h1 {
     text-align: center;
 }
 
-#site_score{
+#site_score {
     font-family: 'Josefin Sans', sans-serif;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -51,12 +51,12 @@ h1 {
     text-align: center;
     font-size: 50px;
 }
-#site_msg{
+#site_msg {
     margin-top: 20px;
     margin-bottom: 5px;
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    font-size: 15px;
+    font-size: 30px;
 }
 
 ul {
@@ -84,48 +84,120 @@ iframe {
 a {
     text-align: center;
     display: block;
-    color: #195975
+    color: #195975;
 }
 
-.progress{
+.progress {
     width: 600px;
     margin-left: 8%;
     margin-top: -20%;
     height: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    overflow: hidden;
 }
 
-.progress-bar{
+.progress-bar {
     height: 100%;
+    width: 0;
+    background-color: #ff6347;
+    border-radius: 50px;
+    transition: width 1s ease-in-out;
 }
-
 
 .buttondiv {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minmax values as needed */
-    gap: 10px;
-    justify-content: center;
+    height: 50px;
+    width: 700px;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 30%;
 }
 
 .button {
-    height: 100%;
-    font-size: large;
-    background-color: white; /* Set default background color */
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
     border: none;
     outline: none;
-    margin: 2%;
-    padding: 4%;
+    margin: 10px;
+    padding: 0 40px;
     text-align: center;
-    border-radius: 300px;
-    border: 1px ;
+    border-radius: 25px;
     box-sizing: border-box;
-    color: black;
-    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff7f50, #ff6347); /* Gradient background */
+}
+
+.button:before,
+.button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.button:before {
+    left: 100%;
+}
+
+.button:after {
+    right: 100%;
+}
+
+.button:hover:before,
+.button:hover:after {
+    transform: translateX(0);
 }
 
 .button:hover {
-    background-color: black; /* Set hover background color */
-    color: white;
-    transform: translateY(-15px); /* Move the button up on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle box-shadow for 3D effect */
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff; /* Change text color to white when hovered */
+    text-decoration: none; /* Remove underline when hovered */
 }
 
+
+/* Style for the back button */
+.backbtn {
+    align-items: center;
+    justify-content: center;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    outline: none;
+    margin: 10px; 
+    width: 90px; /* Adjust width as needed */
+    padding: 0 20px; /* Adjust padding as needed */
+    text-align: center;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: fixed;
+    overflow: hidden;
+    background:  #179b77; /* Gradient background */
+    text-decoration: none; /* Remove underline */
+}
+
+.backbtn:hover {
+    color: #fff; /* Change text color to white when hovered */
+    text-decoration: none;
+    transform: scale(1.05); /* Small increase in size transition */
+}

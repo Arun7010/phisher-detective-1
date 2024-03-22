@@ -23,3 +23,36 @@ body{
     height: 30px;
     border-radius: 100%;
 }
+
+.backbtn {
+    align-items: center;
+    justify-content: center;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    border: 2px solid #000000;
+    outline: none;
+    margin: 10px; 
+    width: 90px; /* Adjust width as needed */
+    padding: 0 20px; /* Adjust padding as needed */
+    text-align: center;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: fixed;
+    overflow: hidden;
+    background:  #836FFF; /* Gradient background */
+    text-decoration: none; /* Remove underline */
+}
+
+.backbtn:hover {
+    color: #000000; /* Change text color to white when hovered */
+    text-decoration: none;
+    transform: scale(1.05); /* Small increase in size transition */
+}

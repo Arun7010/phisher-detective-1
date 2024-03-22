@@ -34,4 +34,14 @@ async function checkURL(url) {
   console.log("Domain:", domain);
   const result = await query(domain);
   document.getElementById("result").innerHTML = result[0][0]["label"];
+  var resultDiv = document.getElementById("result");
+  var colorchange=result[0][0]["label"];
+  if(colorchange=="BENIGN"){
+    resultDiv.classList.remove('malware');
+    resultDiv.classList.add('safe');
+  }
+  else{
+    resultDiv.classList.remove('safe');
+    resultDiv.classList.add('malware');
+  }
 }

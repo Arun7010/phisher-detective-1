@@ -52,33 +52,129 @@
     font-weight: bolder;
 }
 
-.checkbtn {
-    font-size: large;
-    width: 100px;
-    margin-top: -70px;
-    background-color: white; /* Set default background color */
+.result {
+    display: inline-block;
+    height: 50px;
+    bottom: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
     border: none;
     outline: none;
-    margin: 2%;
-    padding: 4%;
+    margin: 10px; 
+    width: 200px; /* Adjust width as needed */
+    padding: 0 20px; /* Adjust padding as needed */
     text-align: center;
-    border-radius: 300px;
-    border: 1px ;
+    border-radius: 25px;
     box-sizing: border-box;
-    color: black;
     cursor: pointer;
-    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease; /* Add background-color transition */
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff7f50, #ff6347); /* Gradient background */
+    /* Gradient background for safe */
+}
+
+.result.safe {
+    background: linear-gradient(to right, green, lightgreen);
+    color: #000000; /* Gradient background for safe */
+}
+
+.result.malware {
+    background: linear-gradient(to right, red, darkred);
+    color: #ffffff; /* Gradient background for malware */
+}
+
+.checkbtn {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    outline: none;
+    margin: 10px; /* Adjust margin as needed */
+    width: 120px; /* Adjust the width of the button */
+    text-align: center;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff7f50, #ff6347); /* Gradient background */
+}
+
+
+.checkbtn:before,
+.checkbtn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.checkbtn:before {
+    left: 100%;
+}
+
+.checkbtn:after {
+    right: 100%;
+}
+
+.checkbtn:hover:before,
+.checkbtn:hover:after {
+    transform: translateX(0);
 }
 
 .checkbtn:hover {
-    background-color: black; /* Set hover background color */
-    color: white;
-    transform: translateY(-15px); /* Move the button up on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle box-shadow for 3D effect */
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff; /* Change text color to white when hovered */
+    text-decoration: none; /* Remove underline when hovered */
 }
+
 
 .result{
     font-size: xx-large;
     font-weight: bolder;
 }
 
+/* Style for the back button */
+.button {
+    align-items: center;
+    justify-content: center;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    border: 2px solid #000000;
+    outline: none;
+    margin: 10px; 
+    width: 90px; /* Adjust width as needed */
+    padding: 0 20px; /* Adjust padding as needed */
+    text-align: center;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
+    position: fixed;
+    overflow: hidden;
+    background:  #836FFF; /* Gradient background */
+    text-decoration: none; /* Remove underline */
+}
+
+.button:hover {
+    color: #000000; /* Change text color to white when hovered */
+    text-decoration: none;
+    transform: scale(1.05); /* Small increase in size transition */
+}

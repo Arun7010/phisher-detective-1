@@ -1,51 +1,7 @@
-body{
-  width: 800px;
-  height: 500px;
-  background-color: #1d2136;
-  color: white;
-}
-
-.container{
-    color: rgb(235, 235, 235);
-    margin: 10%;
-}
-
-.block{
-    background-color: #636fae00;
-    height: fit-content;
-    width: 100%;
-    justify-content: space-between;
-    margin-left: -30px;
-}
-
-.card{
-    display: flex;
-    flex-direction: row;
-    background-color: #dbebf1;
-    align-items: center;
-    padding: 10px;
-    color: #1d2136;
-    font-weight: bolder;
-    font-size: large;
-    overflow-wrap: break-word;
-
-}
-
-.label{
-    margin: 5px;
-}
-.data{
-    margin: 5px;
-    color: red;
-    margin-left: 30px;
-}
-
-/* Style for the back button */
-.backbtn {
+.backbutton {
     align-items: center;
     justify-content: center;
-    bottom: 30px;
-    right: 40px;
+    bottom: 5px;
     display: flex;
     height: 50px;
     line-height: 50px;
@@ -62,16 +18,14 @@ body{
     box-sizing: border-box;
     cursor: pointer;
     transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.5s ease;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     background:  #836FFF; /* Gradient background */
     text-decoration: none; /* Remove underline */
 }
 
-.backbtn:hover {
+.backbutton:hover {
     color: #000000; /* Change text color to white when hovered */
     text-decoration: none;
     transform: scale(1.05); /* Small increase in size transition */
 }
-
-

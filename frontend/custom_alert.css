@@ -1,4 +1,3 @@
-/* Styles for the modal */
 .modal {
   display: none;
   position: fixed;
@@ -17,10 +16,33 @@
   border: 1px solid #888;
   width: 80%;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .message {
   color: red;
+  font-size: 18px;
 }
 .modal-buttons {
   margin-top: 20px;
+}
+button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+button#proceedBtn {
+  background-color: #4CAF50;
+  color: white;
+}
+button#backBtn {
+  background-color: #f44336;
+  color: white;
+}
+button:hover {
+  opacity: 0.8;
 }
